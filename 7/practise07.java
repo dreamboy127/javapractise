@@ -4,21 +4,30 @@
 	> Mail: jerrychou127@gmail.com 
 	> Created Time: Tue 19 Nov 2013 03:50:49 PM CST
  ************************************************************************/
-package practise07;
+import java.io.*;
 public class practise07{
-    public static void main(String[] args){
-        int i=0;
+    public static void main(String[] args) throws Exception{
         int num[]=null;
-        num=new int[256];
-        char[] str=args.toCharArray();
-        while(str[i]!='\n')
+        num=new int[127];
+        StringBuffer buf=new StringBuffer();
+        System.out.println("请输入内容：");
+        int temp=0;
+        while((temp=System.in.read())!=-1)
         {
-            num[str[i]]++;
-            i++;
+            char c=(char)temp;
+            if(c=='\n')
+                break;
+            buf.append(c);
         }
-        for(i=0;i<256;i++)
+        System.out.println(buf.length()+":"+buf);
+        for(int i=0;i<buf.length();i++)
         {
-            System.out.println("the "+(byte)i+":"+num[i]);
+            num[buf.charAt(i)]++;
+        }
+        for(int i=0;i<127;i++)
+        {
+            char ch=(char)i;
+            System.out.println("the "+ch+":"+num[i]);
         }
     }
 }
